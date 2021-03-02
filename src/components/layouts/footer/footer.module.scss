@@ -1,0 +1,43 @@
+@import '../../../sass/variables.scss';
+
+footer {
+    position: relative;
+    bottom: 0;
+    .btn__car {
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        z-index: 1;
+        button{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 25px;
+            color: $white;
+            background-color: $zapote;
+            box-shadow: 0px 4px 20px -6px #000000;
+        }
+    }
+    .footer__btn {
+        height: 100px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        clip-path: polygon(50% 20%, 100% 38%, 100% 100%, 0 100%, 0% 38%);
+        background-color: $zapote;
+        a{
+            margin-left: 15px;
+        }
+        button, a {
+            width: 60px;
+            height: 60px;
+            font-size: 35px;
+            color: $white;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+        }
+    }
+}

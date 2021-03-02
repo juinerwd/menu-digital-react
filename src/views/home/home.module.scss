@@ -1,0 +1,42 @@
+@import '../../sass/variables.scss';
+
+main {
+    padding: 40px 15px 20px 15px;
+
+    .categories {
+        margin-bottom: 20px;
+        overflow: hidden;
+
+        .category {
+            display: flex;
+            white-space: nowrap;
+            overflow: auto;
+            scroll-behavior: smooth;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+            button{
+                border-radius: 20px;
+                padding: 10px 20px;
+                border: none;
+                color: $white;
+                cursor: pointer;
+                background-color: $black;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.897);
+                }
+            }
+            .active{
+                color: #000;
+                background-color: $zapote;
+                &:hover {
+                    background-color: $zapote;
+                }
+            }
+        }
+    }
+    .products {
+        
+    }
+}

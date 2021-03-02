@@ -1,0 +1,95 @@
+$white: #ffffff;
+$red: #ff0000;
+$naranja: #F2923B;
+$zapote: #EC5A3D;
+$black: #000000;
+
+.main {
+    width: 100%;
+    margin-top: -30px;
+    padding: 0px 0px 30px 0px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    background-color: $white;
+    z-index: 1;
+    .img__product{
+        top: -70px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px -6px #000000;
+        }
+    }
+    .section__detail__product {
+        text-align: center;
+
+        .info {
+            padding: 0px 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .price__amount{
+            width: 220px;
+            height: 40px;
+            margin: auto;
+            border: 1px solid $black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+            span {
+                width: 50%;
+                font-weight: 600;
+            }
+            .amount {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-radius: 30px;
+                padding-left: 5px;
+                border: 1px solid $red;
+                background-color: $zapote;
+                span {
+                    font-size: 20px;
+                    font-weight: 500;
+                    color: $white;
+                }
+                button {
+                    width: 50px;
+                    height: 35px;
+                    font-size: 25px;
+                    border-radius: 50%;
+                    border: 2px solid $white;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    .personalize {
+        margin-top: 30px;
+        padding: 0px 15px;
+        .personalization {
+            margin: 10px 0px;
+        }
+        hr{
+            border: 1px solid #ec5a3d5b;
+        }
+        .select {
+            margin: 10px 0px;
+            padding: 0px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .gravy{
+            margin: 15px 0px 10px 0px;
+        }
+    }
+}
