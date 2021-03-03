@@ -10,18 +10,18 @@ const Header = () => {
 
     const inputEl = useRef(null);
 
-    const getHour = new Date();
     useEffect(() => {
+        const getHour = new Date();
+        const hour = () => {
+            let h = getHour.getHours();
+            if (h >= 16 || h <= 22) {
+                setOpenClose(true);
+            }else {
+                setOpenClose(false);
+            }
+        }
         hour();
     },[])
-    const hour = () => {
-        let h = getHour.getHours();
-        if (h >= 16 || h <= 22) {
-            setOpenClose(true);
-        }else {
-            setOpenClose(false);
-        }
-    }
     const onButtonClick = () => {
         setActive(!isActive);
         inputEl.current.focus();

@@ -17,7 +17,7 @@ const DetailProduct = (props) => {
         }else{
             localStorage.setItem(`product${id}`, parseInt(num));
         }
-    },[num]);
+    },[num, id]);
 
     const plus = () => {
         if (num === null) {

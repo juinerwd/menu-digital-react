@@ -2,4 +2,5 @@ import { useContext } from 'react';
 
 import ProductContext from '../contexts/ProductContext';
 
-export default () => useContext(ProductContext);
+const Context = () => useContext(ProductContext)
+export default Context;

@@ -19,14 +19,16 @@ const CardProduct = (props) => {
         if (getData !== null) {
             const dataStorage = JSON.parse(getData)
             if (dataStorage.count === 0 || amountProduct === 0) {
-                removeProductLocalStorage();
+                if (amountProduct === 0) {
+                    localStorage.removeItem(`product${props.item.id}`);
+                }
             }
             if (dataStorage.count !== null) {
                 const getAmountElementLocalStorage = localStorage.length;
                 console.log(getAmountElementLocalStorage);
             }
         }
-    },[amountProduct]);
+    },[amountProduct, props.item.id]);
 
     const mas = (e) => {
         setAmountProduct(amountProduct + 1);
