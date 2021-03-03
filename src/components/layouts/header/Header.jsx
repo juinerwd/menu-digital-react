@@ -16,7 +16,7 @@ const Header = () => {
     },[])
     const hour = () => {
         let h = getHour.getHours();
-        if (h === 16 || h === 17 || h === 18 || h === 19 || h === 20 ||h === 21 || h === 22) {
+        if (h >= 16 || h <= 22) {
             setOpenClose(true);
         }else {
             setOpenClose(false);

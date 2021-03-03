@@ -1,30 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 //import useProduct from '../../../hook/useProduct';
 
 import footerStyle from './footer.module.scss';
 
 const Footer = () => {
-    /* const dataP = useProduct();
-    /* let dataId = 0; 
-    const [num, setNum] = useState(0);
+    /* const [state, setstate] = useState(0); */
 
-    useEffect(() => {
-        getIdProduct();
-    }, [])
-
-    const getIdProduct = () => {
-        /* dataP.infoProducto.map(id => {
-            dataId = id.id;
-        }) 
-
-        console.log(localStorage.getItem('product1'))
-    } */
+    /* useEffect(() => {
+        const getData = localStorage.getItem(`product${props.item.id}`);
+        if (getData !== null) {
+            const getAmountElementLocalStorage = localStorage.length;
+            setstate(getAmountElementLocalStorage);
+        }
+    }, []) */
 
     return (
         <footer className={footerStyle.figure}>
             <div className={footerStyle.btn__car}>
                 <button><i className="fas fa-shopping-cart"></i></button>
+                <div className={footerStyle.amount__car}>
+                    <span>0</span>
+                </div>
             </div>
             <div className={footerStyle.footer__btn}>
                 <a href="/home"><i className="fas fa-home"></i></a>

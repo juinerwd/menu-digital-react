@@ -1,45 +1,61 @@
 import React, {useState, useRef, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
-//import useProduct from '../../../hook/useProduct';
-
 //import prod from '../../../images/products/hamburguesa.jpg';
 
 import productStyle from './cardProduct.module.scss';
 
 const CardProduct = (props) => {
     const buttonEl = useRef();
-    //const productInfo = useProduct();
-    //let getIdProduct = [];
-    const [num, setNum] = useState(localStorage.getItem( `product${props.item.id}` || 0 ));
-    /* const [disable, setDisabled] = useState(true); */
+    /* const productInfo = useProduct(); */
+    const [amountProduct, setAmountProduct] = useState(0);
+    /* const [getId, setGetId] = useState(0);
+    const [num, setNum] = useState(); */
 
+    /* const [disable, setDisabled] = useState(true);  */
+    /* console.log(num); */
     useEffect(() => {
-        if (num === null) {
-            localStorage.setItem(`product${props.item.id}`, 0);
-        }else{
-            localStorage.setItem(`product${props.item.id}`, parseInt(num));
+        const getData = localStorage.getItem(`product${props.item.id}`);
+        if (getData !== null) {
+            const dataStorage = JSON.parse(getData)
+            if (dataStorage.count === 0 || amountProduct === 0) {
+                removeProductLocalStorage();
+            }
+            if (dataStorage.count !== null) {
+                const getAmountElementLocalStorage = localStorage.length;
+                console.log(getAmountElementLocalStorage);
+            }
         }
-    },[num, props.item.id])
+    },[amountProduct]);
 
-    const mas = () => {
-        if (num === null) {
-            setNum(1)
-        }else {
-            setNum(parseInt(num) + 1);
-        }
-        /* setDisabled(false);  */
+    const mas = (e) => {
+        setAmountProduct(amountProduct + 1);
+        addProductLocalStorage();
     }
     const menos = () => {
-        if (num === 0) {
-            setNum(num);
-            /* setDisabled(true); */
-        }
-        if (num > 0){
-            setNum(num - 1);
+        if (amountProduct === 0) {
+            setAmountProduct(amountProduct);
+            removeProductLocalStorage();
+        }else {
+            setAmountProduct(amountProduct - 1);
+            changeAmountProductLocalStorage();
+            if (amountProduct === 0) {
+                removeProductLocalStorage();
+            }
         }
     }
 
+    const addProductLocalStorage = () => {
+        localStorage.setItem(`product${props.item.id}`,  JSON.stringify({id:props.item.id, count: amountProduct + 1}));
+    }
+    const changeAmountProductLocalStorage = () => {
+        localStorage.setItem(`product${props.item.id}`, JSON.stringify({id:props.item.id, count: amountProduct - 1}));
+    }
+    const removeProductLocalStorage = () => {
+        if (amountProduct === 0) {
+            localStorage.removeItem(`product${props.item.id}`);
+        }
+    }
     return (
         <>
             <div className={productStyle.product}>
@@ -55,9 +71,9 @@ const CardProduct = (props) => {
                         <span>{`$ ${props.item.price}`}</span>
                     </div>
                     <div className={productStyle.amount} id="amount">
-                        <button ref={buttonEl} className={productStyle.menus} onClick={menos}>-</button>
-                        <span>{num == null ? 0 : num}</span>
-                        <button className={productStyle.plus} onClick={mas}>+</button>
+                        <button className={productStyle.menus} onClick={menos}>-</button>
+                        <span>{amountProduct}</span>
+                        <button ref={buttonEl} className={productStyle.plus} value={props.item.id} onClick={mas}>+</button>
                     </div>
                 </div>
             </div>
@@ -66,3 +82,38 @@ const CardProduct = (props) => {
 }
 
 export default CardProduct;
+
+
+/* 
+const [num, setNum] = useState(localStorage.getItem( `product${props.item.id}` || 0 ));
+    /* const [disable, setDisabled] = useState(true); 
+    console.log(num);
+    useEffect(() => {
+        if (num === null) {
+            localStorage.setItem(`product${props.item.id}`, 0);
+        }else{
+            localStorage.setItem(`product${props.item.id}`, parseInt(num));
+        }
+    },[num, props.item.id])
+
+ */
+/* let esta = productInfo.dataProducts.find(ojt => ojt.idProduct === props.item.id);
+
+        if (esta) {
+            productInfo.setDataProducts([
+                {
+                    idProduct: props.item.id,
+                    count: amountProduct + 1
+                }
+            ]);
+        }else {
+            productInfo.setDataProducts([
+                ...productInfo.dataProducts,
+                {
+                    idProduct: props.item.id,
+                    count: amountProduct
+                }
+            ]);
+        } */
+
+        /* console.log(productInfo.dataProducts); */

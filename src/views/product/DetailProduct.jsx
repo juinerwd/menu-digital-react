@@ -20,7 +20,7 @@ const DetailProduct = (props) => {
     },[num]);
 
     const plus = () => {
-        if (num == null) {
+        if (num === null) {
             setNum(1)
         }else {
             setNum(parseInt(num) + 1);
@@ -41,7 +41,7 @@ const DetailProduct = (props) => {
         <>
             {
                 data.infoProducto.map( product => (
-                    product.id == id && (
+                    product.id === id && (
                         <main className={detailStyle.main} key={product.id}>
                             <div className={detailStyle.img__product}>
                                 <img src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />

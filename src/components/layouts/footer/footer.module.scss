@@ -19,6 +19,21 @@ footer {
             background-color: $zapote;
             box-shadow: 0px 4px 20px -6px #000000;
         }
+        .amount__car {
+            top: -10%;
+            left: 60%;
+            width: 30px;
+            height: 30px;
+            color: $white;
+            display: flex;
+            font-size: 16px;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            border-radius: 50px;
+            background-color: $zapote;
+            box-shadow: 0px 4px 20px -6px #000000;
+        }
     }
     .footer__btn {
         height: 100px;

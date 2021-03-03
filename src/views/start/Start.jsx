@@ -10,9 +10,9 @@ const Start = () => {
         <div className={startStyle.container__start}>
             <div className={startStyle.figure}>
                 <div className={startStyle.social__media}>
-                    <a href="">F</a>
-                    <a href="">W</a>
-                    <a href="">I</a>
+                    <Link className={startStyle.socialred} to="/"><i className="fab fa-facebook-square"></i></Link>
+                    {/* <Link className={startStyle.socialred} to="/"><i class="fab fa-instagram-square"></i></Link> */}
+                    <Link className={startStyle.socialred} to="/"><i className="fab fa-whatsapp-square"></i></Link>
                 </div>
                 <img className={startStyle.logo} src={logo} alt="Logo" />
                 {/* <div className={startStyle.container__logo}>
