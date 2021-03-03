@@ -11,7 +11,7 @@ import Footer from '../../components/layouts/footer/Footer';
 
 const Home = () => {
   const data = useProduct();
-  const [dataCategory, setDataCategory] = useState(data.infoProducto);
+  const dataCategory = data.infoProducto;
   const [changeCategories, setChangeCategories] = useState(1);
 
   const categories = [
