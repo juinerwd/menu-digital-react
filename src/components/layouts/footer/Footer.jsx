@@ -1,26 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 //import useProduct from '../../../hook/useProduct';
 
 import footerStyle from './footer.module.scss';
 
-const Footer = () => {
-    /* const [state, setstate] = useState(0); */
-
-    /* useEffect(() => {
-        const getData = localStorage.getItem(`product${props.item.id}`);
-        if (getData !== null) {
-            const getAmountElementLocalStorage = localStorage.length;
-            setstate(getAmountElementLocalStorage);
-        }
-    }, []) */
-
+const Footer = (props) => {
+    let getCarrito = JSON.parse(localStorage.getItem('product'));
+    const [state, setstate] = useState(0);
+    useEffect(() => {
+        setstate(getCarrito.length)
+    }, [state])
+    
+    
+    console.log(state);
     return (
         <footer className={footerStyle.figure}>
             <div className={footerStyle.btn__car}>
-                <button><i className="fas fa-shopping-cart"></i></button>
-                <div className={footerStyle.amount__car}>
-                    <span>0</span>
+            <Link to="/order"><button><i className="fas fa-shopping-cart"></i></button></Link>
+                <div className={`${footerStyle.amount__car} ${props.totalLS === 0 && footerStyle.disabled }`}>
+                    <span>{props.totalLS}</span>
                 </div>
             </div>
             <div className={footerStyle.footer__btn}>

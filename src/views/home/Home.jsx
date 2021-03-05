@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import useProduct from '../../hook/useProduct';
 // Estilos
@@ -10,24 +10,28 @@ import Footer from '../../components/layouts/footer/Footer';
 
 
 const Home = () => {
-  const data = useProduct();
-  const dataCategory = data.infoProducto;
+  const {infoProducto, search} = useProduct();
+  if (!localStorage.getItem('product')) {
+    localStorage.setItem('product','[]');
+  }
+  const dataCategory = infoProducto;
   const [changeCategories, setChangeCategories] = useState(1);
+  let getCarritototal = JSON.parse(localStorage.getItem('product'));
+  const [totalLS, setTotalLS] = useState(getCarritototal.length);
 
+  /* console.log(changeCategories); */
   const categories = [
     {"id": 1, "category": 'Recomendado'},
     {"id": 2, "category" : 'Hamburguesas'},
     {"id": 3, "category" : 'Salchipapa'},
-    {"id": 4, "category" : 'Perros'}
+    {"id": 4, "category" : 'Perros'},
+    {"id": 5, "category" : 'Picada'}
   ]
 
   const changeCategory = (e) => {
-    const getcategory = e.target.value.toLowerCase();
-     /*  e.preventDefault(); */
-     setChangeCategories(getcategory);
+    setChangeCategories(parseInt(e.target.value));
   }
-  //console.log(changeCategories);
-  //${homeStyle.active}
+
   return (
     <>
     <Header />
@@ -37,25 +41,21 @@ const Home = () => {
           <div className={homeStyle.category}>
               {
                 categories.map(c => (
-                  <button className={`btnCategory`} key={c.id} value={c.id} onClick={changeCategory}>{c.category}</button>
+                  <button className={`btnCategory ${c.id === changeCategories && homeStyle.active}`} key={c.id} value={c.id} onClick={changeCategory}>{c.category}</button>
                 ))
               }
-              {/* <button className="btnCategory">Todo</button>
-              <button className="btnCategory">Hamburguesas</button>
-              <button className="btnCategory">Salchipapa</button>
-              <button className="btnCategory">Perros</button> */}
           </div>
       </section>
       <section className={homeStyle.products} id="products">
           <h2>Recomendados</h2>
           {
             dataCategory.map(item => (
-              (item.recommended === changeCategories || item.category === changeCategories) && <CardProduct key={item.id} item={item} />
+              (item.recommended === changeCategories || item.category === changeCategories || item.name.toLowerCase() === search) && <CardProduct key={item.id} item={item} />
             ))
           }
       </section>
     </main>
-    <Footer />
+    <Footer totalLS={totalLS} />
     </>
   );
 }

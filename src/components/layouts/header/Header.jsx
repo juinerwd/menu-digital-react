@@ -4,27 +4,33 @@ import { Link } from 'react-router-dom';
 import style from './header.module.scss';
 import logoImg from '../../../images/logo.png';
 
+import useProduct from '../../../hook/useProduct';
+
 const Header = () => {
+    const {search, setSearch} = useProduct();
     const [openClose, setOpenClose] = useState(false);
     const [isActive, setActive] = useState(false);
-
+    const getHour = new Date();
     const inputEl = useRef(null);
 
     useEffect(() => {
-        const getHour = new Date();
-        const hour = () => {
-            let h = getHour.getHours();
-            if (h >= 16 || h <= 22) {
-                setOpenClose(true);
-            }else {
-                setOpenClose(false);
-            }
-        }
         hour();
     },[])
+    const hour = () => {
+        let h = getHour.getHours();
+        if (h >= 16 && h <= 22) {
+            setOpenClose(true);
+        }else {
+            setOpenClose(false);
+        }
+    }
     const onButtonClick = () => {
         setActive(!isActive);
         inputEl.current.focus();
+    }
+
+    const handleChange = (e) => {
+        setSearch({value: e.target.value});
     }
     return (
         <header>
@@ -33,7 +39,7 @@ const Header = () => {
                     <Link className={style.goback} to="/"><i className="fas fa-chevron-left"></i></Link>
                 </div>
                 <div className={`${style.search} ${isActive && style.active}`}>
-                    <input type="text" ref={inputEl} className={style.input} placeholder="search..." />
+                    <input type="text" ref={inputEl} className={style.input} placeholder="search..." value={search.value} onChange={(e) => handleChange(e)} />
                     <button className={style.btn} onClick={onButtonClick}>
                         <i className="fas fa-search"></i>
                     </button>

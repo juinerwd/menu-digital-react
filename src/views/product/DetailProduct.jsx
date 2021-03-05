@@ -4,36 +4,61 @@ import useProduct from '../../hook/useProduct';
 
 import detailStyle from './detailProduct.module.scss';
 
+import Footer from '../../components/layouts/footer/Footer';
+
 const DetailProduct = (props) => {
     const {id} = useParams();
     const data = useProduct();
-    const [num, setNum] = useState(localStorage.getItem( `product${id}` || 0 ));
+    let dataLocalStorage = localStorage.getItem(`product${id}`);
+    let dataLS = JSON.parse((dataLocalStorage === null ? 0 : dataLocalStorage));
+    let dataLs = (dataLS === 0 ? 0 : dataLS.count);
+    const [num, setNum] = useState(dataLs);
     /* const [dataProduct, setDataProduct] = useState(data); */
 
 
     useEffect(() => {
-        if (num === null) {
-            localStorage.setItem(`product${id}`, 0);
-        }else{
-            localStorage.setItem(`product${id}`, parseInt(num));
+        const getData = localStorage.getItem(`product${id}`);
+        if (getData !== null) {
+            const dataStorage = JSON.parse(getData)
+            if (dataStorage.count === 0 || num === 0) {
+                if (num === 0) {
+                    localStorage.removeItem(`product${id}`);
+                }
+            }
+            if (dataStorage.count !== null) {
+                const getAmountElementLocalStorage = localStorage.length;
+                //console.log(getAmountElementLocalStorage);
+                data.setGetIdProduct(getAmountElementLocalStorage);
+            }
         }
     },[num, id]);
 
     const plus = () => {
-        if (num === null) {
-            setNum(1)
-        }else {
-            setNum(parseInt(num) + 1);
-        }
-        /* setDisabled(false);  */
+        setNum(num + 1);
+        addProductLocalStorage();
     }
     const less = () => {
         if (num === 0) {
             setNum(num);
-            /* setDisabled(true); */
-        }
-        if (num > 0){
+            removeProductLocalStorage();
+        }else {
             setNum(num - 1);
+            changeAmountProductLocalStorage();
+            if (num === 0) {
+                removeProductLocalStorage();
+            }
+        }
+    }
+
+    const addProductLocalStorage = () => {
+        localStorage.setItem(`product${id}`,  JSON.stringify({id:id, count: num + 1}));
+    }
+    const changeAmountProductLocalStorage = () => {
+        localStorage.setItem(`product${id}`, JSON.stringify({id:id, count: num - 1}));
+    }
+    const removeProductLocalStorage = () => {
+        if (num === 0) {
+            localStorage.removeItem(`product${id}`);
         }
     }
 
@@ -41,7 +66,7 @@ const DetailProduct = (props) => {
         <>
             {
                 data.infoProducto.map( product => (
-                    product.id === id && (
+                    product.id == id && (
                         <main className={detailStyle.main} key={product.id}>
                             <div className={detailStyle.img__product}>
                                 <img src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />
@@ -111,8 +136,17 @@ const DetailProduct = (props) => {
                     )
                 ))
             }
+            <Footer />
         </>
     )
 }
 
 export default DetailProduct;
+
+
+/* 
+
+
+
+
+*/

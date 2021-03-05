@@ -1,0 +1,167 @@
+@import '../../sass/variables.scss';
+
+%footerdiv{
+    height: 30px;
+    color: $white;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__order {
+    width: 100%;
+    margin-top: 30px;
+    .header__btn{
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 15px 5px 15px;
+        .container__goback {
+            width: 20%;
+            height: 40px;
+            .goback__order {
+                padding: 5px 10px;
+                border-radius: 20px;
+                border: 1px solid $black;
+                i{
+                    font-size: 20px;
+                }
+            }
+        }
+        .text_order {
+            width: 80%;
+            height: 40px;
+            font-size: 25px;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .active {
+            .input {
+                width: 92%;
+                padding-left: 15px;
+
+            }
+        }
+    }
+}
+.main__order{
+    height: 300px;
+    overflow: auto;
+    .product {
+        width: 100%;
+        border-radius: 15px;
+        display: flex;
+        margin-bottom: 15px;
+        background-color: $white;
+        box-shadow: 4px 4px 9px -5px #000000;
+        
+        .info__img{
+            height: 130px;
+            /* a {
+                margin-bottom: 0;
+            } */
+            img{
+                width: 130px;
+                height: 130px;
+                border-radius: 15px;
+            }
+        }
+        
+        .data__pruduct{
+            width: 100%;
+            height: 130px;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0px 10px 0px 10px;
+            .data {
+                width: 100%;
+                margin-top: 5px;
+                p{
+                    color: $zapote;
+                }
+                &>span{
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+            }
+            .amount {
+                width: 100%;
+                text-align: end;
+    
+                button {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 22px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    background-color: transparent;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                .menus {
+                    border: 2px solid $zapote;
+                }
+                span {
+                    font-size: 18px;
+                    margin: 0px 5px 0px 5px;
+                }
+                .plus{
+                    border: none;
+                    background-color: $zapote;
+                }
+                
+            }
+        }
+        
+    }
+}
+
+.footer_Order {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    .container{
+        height: 100%;
+        margin: 0px 15px;
+        padding: 20px 15px 10px 15px;
+        text-align: center;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        background-color: $zapote;
+        
+        .subtotal {
+            width: 100%;
+            @extend %footerdiv;
+        }
+        .cost__shipping{
+            @extend %footerdiv;
+        }
+        .total {
+            @extend %footerdiv;
+        }
+        .send_order {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            button{
+                width: 200px;
+                height: 40px;
+                color: $white;
+                font-size: 20px;
+                border-radius: 30px;
+                border: 1px solid $white;
+                background-color: transparent;
+            }
+        }
+    }
+}
