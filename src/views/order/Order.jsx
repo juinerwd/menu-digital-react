@@ -8,8 +8,6 @@ import useProduct from '../../hook/useProduct';
 const Order = () => {
     let costoEnvio = 2.000;
     var sendDataName = [];
-    var sendDataAmount = [];
-    var sendDataTotal = 0;
     const {infoProducto} = useProduct()
     let getCarrito = JSON.parse(localStorage.getItem('product'));
     const [changeAmount, setChangeAmount] = useState({});
