@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import useProduct from '../../hook/useProduct';
 // Estilos
@@ -17,7 +17,7 @@ const Home = () => {
   const dataCategory = infoProducto;
   const [changeCategories, setChangeCategories] = useState(1);
   let getCarritototal = JSON.parse(localStorage.getItem('product'));
-  const [totalLS, setTotalLS] = useState(getCarritototal.length);
+  const [totalLS] = useState(getCarritototal.length);
 
   /* console.log(changeCategories); */
   const categories = [

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 
 import useProduct from '../../../hook/useProduct';
@@ -8,7 +8,7 @@ import productStyle from './cardProduct.module.scss';
 
 const CardProduct = (props) => {
     const buttonEl = useRef();
-    const {objectProductLS, infoProducto} = useProduct();
+    const {infoProducto} = useProduct();
     if (!localStorage.getItem('product')) {
         localStorage.setItem('product','[]');
     }
