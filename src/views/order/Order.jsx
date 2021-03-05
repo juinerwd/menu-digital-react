@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import styleOrder from './order.module.scss';
@@ -11,9 +11,9 @@ const Order = () => {
     let getCarrito = JSON.parse(localStorage.getItem('product'));
     const [state, setstate] = useState();
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log('Cambió');
-    }, [state])
+    }, [state]) */
     
     const getTotal = () => {
         let total = 0;
