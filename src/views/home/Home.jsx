@@ -50,7 +50,7 @@ const Home = () => {
           <h2>Recomendados</h2>
           {
             dataCategory.map(item => (
-              (item.recommended === changeCategories || item.category === changeCategories || item.name.toLowerCase() === search) && <CardProduct key={item.id} item={item} />
+              (item.recommended === changeCategories || item.category === changeCategories || item.name.toLowerCase() === search) && <CardProduct key={item.id} item={item} category={changeCategories} />
             ))
           }
       </section>

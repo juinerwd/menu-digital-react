@@ -14,9 +14,9 @@
         {"id": 12, "name": "Costilla de res al Barbeque", "price": 18.000, "category":0, "recommended":0, "count":0},
         {"id": 13, "name": "Ranchi mixta (Pollo y carne)", "price": 10.000, "category":0, "recommended":0, "count":0},
         {"id": 14, "name": "Chiken Burger", "price": 12.000, "category":2, "recommended":0, "count":0},
-        {"id": 15, "name": "Súper perro ranchero", "price": 11.000, "1":4, "recommended":1, "count":0},
+        {"id": 15, "name": "Súper perro ranchero", "price": 11.000, "category":4, "recommended":1, "count":0},
         {"id": 16, "name": "Picada familiar", "price": 20.000, "category":5, "recommended":0, "count":0},
-        {"id": 17, "name": "Filete de pollo", "price": 20.000, "category":0, "recommended":0, "count":0},
+        {"id": 17, "name": "Filete de pollo", "price": 20.000, "category":0, "recommended":1, "count":0},
         {"id": 18, "name": "Churrasco", "price": 20.000, "category":0, "recommended":0, "count":0}
     ]
 }

@@ -7,6 +7,9 @@ import useProduct from '../../hook/useProduct';
 
 const Order = () => {
     let costoEnvio = 2.000;
+    var sendDataName = [];
+    var sendDataAmount = [];
+    var sendDataTotal = 0;
     const {infoProducto} = useProduct()
     let getCarrito = JSON.parse(localStorage.getItem('product'));
     const [changeAmount, setChangeAmount] = useState({});
@@ -83,10 +86,16 @@ const Order = () => {
         /* console.log(getCarrito) */
 
     }
-
-    console.log(changeAmount);
+    
     const subtotal = Number.parseFloat(getTotal()).toFixed(3);
     const preciTotal = getTotal() + costoEnvio;
+    //const dataWhatsapp = sendProductWhatsupp();
+    console.log();
+    getCarrito.map(i => {
+        sendDataName.push(`*${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`);
+    })
+    /* console.log(``);
+    console.log(sendDataAmount.toString()); */
     return (
         <>
             <header className={styleOrder.header__order}>
@@ -144,7 +153,9 @@ const Order = () => {
                             <span>$ {preciTotal.toFixed(3) === 0 ? 0 : preciTotal.toFixed(3)}</span>
                         </div>
                         <div className={styleOrder.send_order}>
-                            <button>Enviar pedido</button>
+                            <a href={`https://wa.me/573225271447?text=${sendDataName.toString()} Total: ${getTotal().toFixed(3)}`}>
+                                <button>Enviar pedido</button>
+                            </a>
                         </div>
                     </div>
                 </div>

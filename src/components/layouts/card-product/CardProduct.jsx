@@ -51,9 +51,9 @@ const CardProduct = (props) => {
                 <div className={productStyle.data__pruduct}>
                     <div className={productStyle.data}>
                         <Link to={`/detail-product/${props.item.id}`}>
-                            <h4>{props.item.name}</h4>
+                            <h4 className={productStyle.head}>{props.item.name}</h4>
                         </Link>
-                        <p>Mas vendido</p>
+                        <p className={props.category !== 1 ? productStyle.disable : ''}>Mas vendido</p>
                         <span>{`$ ${Number.parseFloat(props.item.price).toFixed(3)}`}</span>
                     </div>
                     <div className={productStyle.amount} id="amount">
