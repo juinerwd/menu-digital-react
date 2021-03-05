@@ -41,25 +41,6 @@ const CardProduct = (props) => {
         getCarrito.push(registro);
         localStorage.setItem('product',JSON.stringify(getCarrito));
     }
-    const lessProductLocalStorage = (item) => {
-        let getCarrito = JSON.parse(localStorage.getItem('product'));
-        for(let i of infoProducto){
-            if(i.id === item){
-                var registro = i
-            }
-        }
-        if(!registro){
-            return
-        }
-        for (let i of getCarrito){
-            if(i.id === item){
-                i.count--;
-                setAmountP(i.count);
-                localStorage.setItem('product',JSON.stringify(getCarrito));
-                return;
-            }
-        }
-    }
 
     return (
         <>
@@ -76,9 +57,7 @@ const CardProduct = (props) => {
                         <span>{`$ ${Number.parseFloat(props.item.price).toFixed(3)}`}</span>
                     </div>
                     <div className={productStyle.amount} id="amount">
-                        <button className={productStyle.menus} onClick={() => lessProductLocalStorage(props.item.id)}>-</button>
-                        <span>{props.item.count}</span>
-                        <button ref={buttonEl} className={productStyle.plus} value={props.item.id} onClick={() => mas(props.item.id)}>+</button>
+                        <button ref={buttonEl} className={productStyle.plus} value={props.item.id} onClick={() => mas(props.item.id)}>Agregar</button>
                     </div>
                 </div>
             </div>

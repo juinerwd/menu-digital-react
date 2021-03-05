@@ -82,6 +82,21 @@
             .data {
                 width: 100%;
                 margin-top: 5px;
+
+                .name__delete{
+                    display: flex;
+                    justify-content: space-between;
+
+                    button {
+                        font-size: 18px;
+                        border: none;
+                        background-color: transparent;
+
+                        i {
+                            color: $zapote;
+                        }
+                    }
+                }
                 p{
                     color: $zapote;
                 }

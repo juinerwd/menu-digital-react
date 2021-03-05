@@ -1,23 +1,34 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useState} from 'react';
+import { Link, useParams } from 'react-router-dom';
 import useProduct from '../../hook/useProduct';
 
 import detailStyle from './detailProduct.module.scss';
 
-import Footer from '../../components/layouts/footer/Footer';
-
 const DetailProduct = (props) => {
     const {id} = useParams();
-    const data = useProduct();
+    const {infoProducto} = useProduct();
+    let getCarritototal = JSON.parse(localStorage.getItem('product'));
+    const [totalLS] = useState(getCarritototal.length);
+    /* console.log(infoProducto); */
     /* let dataLocalStorage = localStorage.getItem(`product${id}`);
     let dataLS = JSON.parse((dataLocalStorage === null ? 0 : dataLocalStorage));
     let dataLs = (dataLS === 0 ? 0 : dataLS.count); */
 
     return (
         <>
+            <header className={detailStyle.header__detail}>
+                <div className={detailStyle.header__btn}>
+                    <div className={detailStyle.container__goback}>
+                        <Link className={detailStyle.goback} to="/home"><i className="fas fa-chevron-left"></i></Link>
+                    </div>
+                    <div className={`${detailStyle.text__detail}`}>
+                        <h5>Detalle del producto</h5>
+                    </div>
+                </div>
+            </header>
             {
-                data.infoProducto.map( product => (
-                    product.id === id && (
+                infoProducto.map( product => (
+                    product.id == id && (
                         <main className={detailStyle.main} key={product.id}>
                             <div className={detailStyle.img__product}>
                                 <img src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />
@@ -40,7 +51,18 @@ const DetailProduct = (props) => {
                     )
                 ))
             }
-            <Footer />
+            <footer className={detailStyle.footer__detail}>
+                <div className={detailStyle.btn__car}>
+                <Link to="/order"><button><i className="fas fa-shopping-cart"></i></button></Link>
+                    <div className={`${detailStyle.amount__car} ${totalLS === 0 && detailStyle.disabled }`}>
+                        <span>{totalLS}</span>
+                    </div>
+                </div>
+                <div className={detailStyle.footer__btn}>
+                    <a href="/home"><i className="fas fa-home"></i></a>
+                    <button><i className="fas fa-cog"></i></button>
+                </div>
+            </footer>
         </>
     )
 }

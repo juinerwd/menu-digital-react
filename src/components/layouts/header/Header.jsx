@@ -33,7 +33,7 @@ const Header = () => {
         setSearch({value: e.target.value});
     }
     return (
-        <header>
+        <header className={style.header__component}>
             <div className={style.header__btn}>
                 <div className={style.container__goback}>
                     <Link className={style.goback} to="/"><i className="fas fa-chevron-left"></i></Link>

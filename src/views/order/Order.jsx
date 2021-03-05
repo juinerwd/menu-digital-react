@@ -9,11 +9,7 @@ const Order = () => {
     let costoEnvio = 2.000;
     const {infoProducto} = useProduct()
     let getCarrito = JSON.parse(localStorage.getItem('product'));
-    const [state, setstate] = useState();
-
-    /* useEffect(() => {
-        console.log('Cambió');
-    }, [state]) */
+    const [changeAmount, setChangeAmount] = useState({});
     
     const getTotal = () => {
         let total = 0;
@@ -22,6 +18,7 @@ const Order = () => {
         }
         return total;
     }
+    
     const addProductLocalStorage = (item) => {
         let getCarrito = JSON.parse(localStorage.getItem('product'));
         for(let i of infoProducto){
@@ -35,6 +32,7 @@ const Order = () => {
         for (let i of getCarrito){
             if(i.id === item){
                 i.count++;
+                setChangeAmount({id:i.id, amount: i.count});
                 localStorage.setItem('product',JSON.stringify(getCarrito));
                 return;
             }
@@ -42,7 +40,6 @@ const Order = () => {
         registro.count = 1;
         getCarrito.push(registro);
         localStorage.setItem('product',JSON.stringify(getCarrito));
-        setstate(0)
     }
     const lessProductLocalStorage = (item) => {
         let getCarrito = JSON.parse(localStorage.getItem('product'));
@@ -58,6 +55,7 @@ const Order = () => {
             if(i.id === item){
                 if (i.count > 0) {
                     i.count--;
+                    setChangeAmount({id:i.id, amount: i.count});
                     localStorage.setItem('product',JSON.stringify(getCarrito));
                     return;
                 }
@@ -73,7 +71,6 @@ const Order = () => {
                 
             }
         }
-        setstate(1);
     }
     const deleteProductLocalStorage = (item) => {
         let getCarrito = JSON.parse(localStorage.getItem('product'));
@@ -84,10 +81,10 @@ const Order = () => {
         }
         localStorage.setItem('product', JSON.stringify(getCarrito));
         /* console.log(getCarrito) */
-        setstate(2);
+
     }
 
-    //console.log(getAmount());
+    console.log(changeAmount);
     const subtotal = Number.parseFloat(getTotal()).toFixed(3);
     const preciTotal = getTotal() + costoEnvio;
     return (
@@ -112,7 +109,7 @@ const Order = () => {
                         </div>
                         <div className={styleOrder.data__pruduct}>
                             <div className={styleOrder.data}>
-                                <div>
+                                <div className={styleOrder.name__delete}>
                                     <Link to={`/detail-product/${item.id}`}>
                                         <h4>{item.name}</h4>
                                     </Link>
@@ -123,7 +120,7 @@ const Order = () => {
                             </div>
                             <div className={styleOrder.amount} id="amount">
                                 <button className={styleOrder.menus} onClick={() => lessProductLocalStorage(item.id)}>-</button>
-                                <span>{item.count}</span>
+                                <span>{changeAmount.id === item.id ? changeAmount.amount : item.count}</span>
                                 <button className={styleOrder.plus} value={item.id} onClick={() => addProductLocalStorage(item.id)}>+</button>
                             </div>
                         </div>
