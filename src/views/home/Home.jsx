@@ -19,7 +19,7 @@ const Home = () => {
   let getCarritototal = JSON.parse(localStorage.getItem('product'));
   const [totalLS] = useState(getCarritototal.length);
 
-  /* console.log(changeCategories); */
+  console.log(dataCategory);
   const categories = [
     {"id": 1, "category": 'Recomendado'},
     {"id": 2, "category" : 'Hamburguesas'},
@@ -50,7 +50,7 @@ const Home = () => {
           <h2>Recomendados</h2>
           {
             dataCategory.map(item => (
-              (item.recommended === changeCategories || item.category === changeCategories || item.name.toLowerCase() === search) && <CardProduct key={item.id} item={item} category={changeCategories} />
+              (item.recommended === changeCategories || item.category === changeCategories || item.name.toLowerCase() === search.value) && <CardProduct key={item.id} item={item} category={changeCategories} />
             ))
           }
       </section>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 import styleOrder from './order.module.scss';
@@ -11,7 +11,12 @@ const Order = () => {
     const {infoProducto} = useProduct()
     let getCarrito = JSON.parse(localStorage.getItem('product'));
     const [changeAmount, setChangeAmount] = useState({});
-    
+    const [removeCard, setRemoveCard] = useState(0);
+    console.log(removeCard);
+    useEffect(() => {
+        document.title = 'Picatoon - Pedidos';
+    }, []);
+
     const getTotal = () => {
         let total = 0;
         for(let i of getCarrito){
@@ -19,7 +24,7 @@ const Order = () => {
         }
         return total;
     }
-    
+
     const addProductLocalStorage = (item) => {
         let getCarrito = JSON.parse(localStorage.getItem('product'));
         for(let i of infoProducto){
@@ -56,13 +61,17 @@ const Order = () => {
             if(i.id === item){
                 if (i.count > 0) {
                     i.count--;
+                    if (i.count === 0) {
+                        setRemoveCard(i.id);
+                    }
                     setChangeAmount({id:i.id, amount: i.count});
                     localStorage.setItem('product',JSON.stringify(getCarrito));
                     return;
                 }
-                if(i.count <= 0) {
+                if(i.count <= 1) {
                     for(let i in getCarrito){
                         if(getCarrito[i].id === item){
+                            setRemoveCard(getCarrito[i].id);
                             getCarrito.splice(i, 1);
                         }
                     }
@@ -77,23 +86,18 @@ const Order = () => {
         let getCarrito = JSON.parse(localStorage.getItem('product'));
         for(let i in getCarrito){
             if(getCarrito[i].id === item){
+                setRemoveCard(getCarrito[i].id);
                 getCarrito.splice(i, 1);
             }
         }
         localStorage.setItem('product', JSON.stringify(getCarrito));
-        /* console.log(getCarrito) */
-
     }
-    
     const subtotal = Number.parseFloat(getTotal()).toFixed(3);
     const preciTotal = getTotal() + costoEnvio;
-    //const dataWhatsapp = sendProductWhatsupp();
-    console.log();
     getCarrito.map(i => {
         sendDataName.push(`*${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`);
     })
-    /* console.log(``);
-    console.log(sendDataAmount.toString()); */
+
     return (
         <>
             <header className={styleOrder.header__order}>
@@ -110,7 +114,7 @@ const Order = () => {
             {
                 getCarrito.map((item) => (
                     //<CardProduct key={item.id} item={item} />
-                    <div className={styleOrder.product} key={item.id}>
+                    <div className={`${styleOrder.product} ${removeCard === item.id && styleOrder.remove}`} key={item.id}>
                         <div className={styleOrder.info__img}>
                             <img className={styleOrder.img__product} src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />
                         </div>

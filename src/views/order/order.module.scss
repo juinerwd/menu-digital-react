@@ -1,5 +1,8 @@
 @import '../../sass/variables.scss';
 
+.remove {
+    display: none;
+}
 %footerdiv{
     height: 30px;
     color: $white;
