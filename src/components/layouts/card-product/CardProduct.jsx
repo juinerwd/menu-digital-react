@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import { Link } from 'react-router-dom';
 
 import useProduct from '../../../hook/useProduct';
@@ -13,7 +13,7 @@ const CardProduct = (props) => {
         localStorage.setItem('product','[]');
     }
 
-    const [amountP, setAmountP] = useState(0);
+    //const [amountP, setAmountP] = useState(0);
     
     const mas = (e) => {
         addProductLocalStorage(e);
@@ -32,7 +32,7 @@ const CardProduct = (props) => {
         for (let i of getCarrito){
             if(i.id === item){
                 i.count++;
-                setAmountP(i.count);
+                //setAmountP(i.count);
                 localStorage.setItem('product',JSON.stringify(getCarrito));
                 return;
             }

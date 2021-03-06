@@ -10,7 +10,7 @@ const Footer = (props) => {
     const [state, setstate] = useState(0);
     useEffect(() => {
         setstate(getCarrito.length)
-    }, [state])
+    }, [state, getCarrito])
     return (
         <footer className={footerStyle.figure}>
             <div className={footerStyle.btn__car}>
