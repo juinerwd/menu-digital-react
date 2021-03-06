@@ -15,7 +15,7 @@ const Header = () => {
 
     useEffect(() => {
         hour();
-    }, [])
+    })
 
     const hour = () => {
         let h = getHour.getHours();

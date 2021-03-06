@@ -19,7 +19,6 @@ const Home = () => {
   let getCarritototal = JSON.parse(localStorage.getItem('product'));
   const [totalLS] = useState(getCarritototal.length);
 
-  console.log(dataCategory);
   const categories = [
     {"id": 1, "category": 'Recomendado'},
     {"id": 2, "category" : 'Hamburguesas'},

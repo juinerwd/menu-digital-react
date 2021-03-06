@@ -12,13 +12,10 @@ const Order = () => {
     let getCarrito = JSON.parse(localStorage.getItem('product'));
     const [changeAmount, setChangeAmount] = useState({});
     const [removeCard, setRemoveCard] = useState(0);
-    console.log(removeCard);
+
     useEffect(() => {
         document.title = 'Picatoon - Pedidos';
-        getCarrito.map(i => {
-            sendDataName.push(`*${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`);
-        })
-    }, [getCarrito, sendDataName]);
+    });
 
     const getTotal = () => {
         let total = 0;
@@ -97,6 +94,9 @@ const Order = () => {
     }
     const subtotal = Number.parseFloat(getTotal()).toFixed(3);
     const preciTotal = getTotal() + costoEnvio;
+    getCarrito.map((i) => (
+        sendDataName.push(`*${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`)
+    ));
 
     return (
         <>

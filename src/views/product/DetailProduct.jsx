@@ -9,6 +9,7 @@ const DetailProduct = (props) => {
     const {infoProducto} = useProduct();
     let getCarritototal = JSON.parse(localStorage.getItem('product'));
     const [totalLS] = useState(getCarritototal.length);
+
     /* console.log(infoProducto); */
     /* let dataLocalStorage = localStorage.getItem(`product${id}`);
     let dataLS = JSON.parse((dataLocalStorage === null ? 0 : dataLocalStorage));
@@ -28,7 +29,7 @@ const DetailProduct = (props) => {
             </header>
             {
                 infoProducto.map( product => (
-                    product.id == id && (
+                    product.id === parseInt(id) && (
                         <main className={detailStyle.main} key={product.id}>
                             <div className={detailStyle.img__product}>
                                 <img src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />
