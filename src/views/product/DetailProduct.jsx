@@ -10,11 +10,6 @@ const DetailProduct = (props) => {
     let getCarritototal = JSON.parse(localStorage.getItem('product'));
     const [totalLS] = useState(getCarritototal.length);
 
-    /* console.log(infoProducto); */
-    /* let dataLocalStorage = localStorage.getItem(`product${id}`);
-    let dataLS = JSON.parse((dataLocalStorage === null ? 0 : dataLocalStorage));
-    let dataLs = (dataLS === 0 ? 0 : dataLS.count); */
-
     return (
         <>
             <header className={detailStyle.header__detail}>

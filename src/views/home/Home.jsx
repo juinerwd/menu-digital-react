@@ -8,7 +8,6 @@ import Header from '../../components/layouts/header/Header';
 import CardProduct from '../../components/layouts/card-product/CardProduct';
 import Footer from '../../components/layouts/footer/Footer';
 
-
 const Home = () => {
   const {infoProducto, search} = useProduct();
   if (!localStorage.getItem('product')) {
