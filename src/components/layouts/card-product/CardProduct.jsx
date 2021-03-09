@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import useProduct from '../../../hook/useProduct';
 //import prod from '../../../images/products/hamburguesa.jpg';
@@ -40,13 +41,14 @@ const CardProduct = (props) => {
         registro.count = 1;
         getCarrito.push(registro);
         localStorage.setItem('product',JSON.stringify(getCarrito));
+        Swal.fire('Producto añodido al carrito de compras');
     }
 
     return (
         <>
             <div className={productStyle.product}>
                 <div className={productStyle.info__img}>
-                    <img className={productStyle.img__product} src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />
+                    <img className={productStyle.img__product} src={ props.item.img } alt="" />
                 </div>
                 <div className={productStyle.data__pruduct}>
                     <div className={productStyle.data}>

@@ -38,7 +38,7 @@ const Order = () => {
         for (let i of getCarrito){
             if(i.id === item){
                 i.count++;
-                setChangeAmount({id:i.id, amount: i.count});
+                setChangeAmount({id:i.id, price: i.price * i.count,  amount: i.count});
                 localStorage.setItem('product',JSON.stringify(getCarrito));
                 return;
             }
@@ -64,7 +64,7 @@ const Order = () => {
                     if (i.count === 0) {
                         setRemoveCard(i.id);
                     }
-                    setChangeAmount({id:i.id, amount: i.count});
+                    setChangeAmount({id:i.id, price: i.price - i.price,  amount: i.count});
                     localStorage.setItem('product',JSON.stringify(getCarrito));
                     return;
                 }
@@ -116,7 +116,7 @@ const Order = () => {
                     //<CardProduct key={item.id} item={item} />
                     <div className={`${styleOrder.product} ${removeCard === item.id && styleOrder.remove}`} key={item.id}>
                         <div className={styleOrder.info__img}>
-                            <img className={styleOrder.img__product} src={`https://i.ibb.co/Trdf3jr/maxresdefault.jpg`} alt="" />
+                            <img className={styleOrder.img__product} src={item.img} alt="" />
                         </div>
                         <div className={styleOrder.data__pruduct}>
                             <div className={styleOrder.data}>
@@ -127,7 +127,7 @@ const Order = () => {
                                     <button className={styleOrder.btn__delete} onClick={() => deleteProductLocalStorage(item.id)}><i className="fas fa-trash-alt"></i></button>
                                 </div>
                                 <p>Mas vendido</p>
-                                <span>{`$ ${Number.parseFloat(item.price).toFixed(3)}`}</span>
+                                <span>{(changeAmount.id === item.id && changeAmount.amount > 1 ) ? Number.parseFloat(changeAmount.price).toFixed(3) : Number.parseFloat(item.price).toFixed(3)}</span>
                             </div>
                             <div className={styleOrder.amount} id="amount">
                                 <button className={styleOrder.menus} onClick={() => lessProductLocalStorage(item.id)}>-</button>
@@ -155,7 +155,7 @@ const Order = () => {
                             <span>$ {preciTotal.toFixed(3) === 0 ? 0 : preciTotal.toFixed(3)}</span>
                         </div>
                         <div className={styleOrder.send_order}>
-                            <a href={`https://wa.me/573225271447?text=${sendDataName.toString()} Total: ${getTotal().toFixed(3)}`}>
+                            <a href={`https://wa.me/573225271447?text=${sendDataName.toString()} *Total*: ${getTotal().toFixed(3)}`}>
                                 <button>Enviar pedido</button>
                             </a>
                         </div>
