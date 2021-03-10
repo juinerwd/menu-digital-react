@@ -10,8 +10,8 @@ const Start = () => {
         <div className={startStyle.container__start}>
             <div className={startStyle.figure}>
                 <div className={startStyle.social__media}>
-                    <Link className={startStyle.socialred} to="/"><i className="fab fa-facebook-square"></i></Link>
-                    <Link className={startStyle.socialred} to="/"><i className="fab fa-whatsapp-square"></i></Link>
+                    <a className={startStyle.socialred} href="https://www.facebook.com/productospicatoon" target='__blank'><i className="fab fa-facebook-square"></i></a>
+                    <a className={startStyle.socialred} href="https://wa.me/573142098439"><i className="fab fa-whatsapp-square"></i></a>
                 </div>
                 <img className={startStyle.logo} src={logo} alt="Logo" />
             </div>

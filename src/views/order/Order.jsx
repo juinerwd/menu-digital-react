@@ -92,7 +92,7 @@ const Order = () => {
         }
         localStorage.setItem('product', JSON.stringify(getCarrito));
     }
-    const subtotal = Number.parseFloat(getTotal()).toFixed(3);
+    const subtotal = Number.parseFloat(getTotal());
     const preciTotal = getTotal() + costoEnvio;
     getCarrito.map((i) => (
         sendDataName.push(`*${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`)
@@ -127,7 +127,7 @@ const Order = () => {
                                     <button className={styleOrder.btn__delete} onClick={() => deleteProductLocalStorage(item.id)}><i className="fas fa-trash-alt"></i></button>
                                 </div>
                                 <p>Mas vendido</p>
-                                <span>{(changeAmount.id === item.id && changeAmount.amount > 1 ) ? Number.parseFloat(changeAmount.price).toFixed(3) : Number.parseFloat(item.price).toFixed(3)}</span>
+                                <span>{Number.parseFloat(item.price).toFixed(3)}</span>
                             </div>
                             <div className={styleOrder.amount} id="amount">
                                 <button className={styleOrder.menus} onClick={() => lessProductLocalStorage(item.id)}>-</button>
@@ -144,20 +144,22 @@ const Order = () => {
                     <div>
                         <div className={styleOrder.subtotal}>
                             <h3>Sub total</h3>
-                            <span>{`$ ${subtotal === 0 ? 0 : subtotal}`}</span>
+                            <span>{`$ ${subtotal === 0 ? 0 : subtotal.toFixed(3)}`}</span>
                         </div>
                         <div className={styleOrder.cost__shipping}>
                             <h3>Costo envío</h3>
-                            <span>$ {Number.parseFloat(getTotal()).toFixed(3) === 0 ? 0 : costoEnvio.toFixed(3)}</span>
+                            <span>$ {subtotal === 0 ? 0 : costoEnvio.toFixed(3)}</span>
                         </div>
                         <div className={styleOrder.total}>
                             <h3>Total</h3>
-                            <span>$ {preciTotal.toFixed(3) === 0 ? 0 : preciTotal.toFixed(3)}</span>
+                            <span>$ {subtotal === 0 ? 0 : preciTotal.toFixed(3)}</span>
                         </div>
                         <div className={styleOrder.send_order}>
-                            <a href={`https://wa.me/573225271447?text=${sendDataName.toString()} *Total*: ${getTotal().toFixed(3)}`}>
-                                <button>Enviar pedido</button>
-                            </a>
+                            <button>
+                                <a href={subtotal !== 0 ? `https://wa.me/573142098439?text=${sendDataName.toString()} *Total*: ${getTotal().toFixed(3)}` : ''}>
+                                    Enviar pedido
+                                </a>
+                            </button>
                         </div>
                     </div>
                 </div>

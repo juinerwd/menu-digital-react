@@ -179,6 +179,13 @@
                 border-radius: 30px;
                 border: 1px solid $white;
                 background-color: transparent;
+                a {
+                    color: $white;
+                    text-decoration: none;
+                    &:visited {
+                        color: $white;
+                    }
+                }
             }
         }
     }
