@@ -41,7 +41,7 @@ const CardProduct = (props) => {
         registro.count = 1;
         getCarrito.push(registro);
         localStorage.setItem('product',JSON.stringify(getCarrito));
-        Swal.fire('Producto añodido al carrito de compras');
+        Swal.fire({text: 'Producto añadido al carrito de compras'})
     }
 
     return (
