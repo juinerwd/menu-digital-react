@@ -95,7 +95,7 @@ const Order = () => {
     const subtotal = Number.parseFloat(getTotal());
     const preciTotal = getTotal() + costoEnvio;
     getCarrito.map((i) => (
-        sendDataName.push(`*${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`)
+        sendDataName.push(` *${i.name}* *Cantidad*: ${i.count} *Precio*: ${i.price.toFixed(3)}`)
     ));
 
     return (
