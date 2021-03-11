@@ -9,7 +9,7 @@ import CardProduct from '../../components/layouts/card-product/CardProduct';
 import Footer from '../../components/layouts/footer/Footer';
 
 const Home = () => {
-  const {infoProducto, search} = useProduct();
+  const {infoProducto} = useProduct();
   if (!localStorage.getItem('product')) {
     localStorage.setItem('product','[]');
   }
@@ -17,7 +17,7 @@ const Home = () => {
   const [changeCategories, setChangeCategories] = useState(1);
   let getCarritototal = JSON.parse(localStorage.getItem('product'));
   const [totalLS] = useState(getCarritototal.length);
-  const [searchProduct] = useState(search.value);
+  //const [searchProduct] = useState(search.value);
 
   const categories = [
     {"id": 1, "category": 'Recomendado'},
@@ -31,6 +31,20 @@ const Home = () => {
     setChangeCategories(parseInt(e.target.value));
   }
 
+  /* const filter = () => {
+    let textProduct;
+    const text = search.value.toLowerCase();
+    for(let product of infoProducto){
+      let nameProduct = product.name.toLowerCase();
+      if (nameProduct.indexOf(text) !== -1) {
+        textProduct = product.name;
+      }
+    }
+    item.name === filter() || 
+    return textProduct;
+  }
+
+  console.log(filter()); */
   return (
     <>
     <Header />
@@ -49,7 +63,7 @@ const Home = () => {
           <h2>Recomendados</h2>
           {
             dataCategory.map(item => (
-              (item.recommended === changeCategories || item.category === changeCategories || (searchProduct !== '' && item.name.toLowerCase().includes(searchProduct))) && <CardProduct key={item.id} item={item} category={changeCategories} />
+              (item.recommended === changeCategories || item.category === changeCategories) && <CardProduct key={item.id} item={item} category={changeCategories} />
             ))
           }
       </section>

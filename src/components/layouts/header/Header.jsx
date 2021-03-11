@@ -11,6 +11,7 @@ const Header = () => {
     const [openClose, setOpenClose] = useState(false);
     const [isActive, setActive] = useState(false);
     const getHour = new Date();
+    const getDay = new Date();
     const inputEl = useRef(null);
 
     useEffect(() => {
@@ -19,8 +20,12 @@ const Header = () => {
 
     const hour = () => {
         let h = getHour.getHours();
-        if (h >= 16 && h <= 22) {
-            setOpenClose(true);
+        if (getDay.getDay() === 1 || getDay.getDay() === 2 || getDay.getDay() === 3) {
+            if (h >= 16 && h <= 22) {
+                setOpenClose(true);
+            }else {
+                setOpenClose(false);
+            }
         }else {
             setOpenClose(false);
         }

@@ -156,7 +156,7 @@ const Order = () => {
                         </div>
                         <div className={styleOrder.send_order}>
                             <button>
-                                <a href={subtotal !== 0 ? `https://wa.me/573142098439?text=${sendDataName.toString()} *Total*: ${getTotal().toFixed(3)}` : ''}>
+                                <a href={subtotal !== 0 ? `https://wa.me/573142098439?text=${sendDataName.toString()} *Total*: ${getTotal().toFixed(3)} *Más consto de envío*: ${preciTotal.toFixed(3)}` : ''}>
                                     Enviar pedido
                                 </a>
                             </button>
