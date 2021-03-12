@@ -3,12 +3,26 @@ import { Link, useParams } from 'react-router-dom';
 import useProduct from '../../hook/useProduct';
 
 import detailStyle from './detailProduct.module.scss';
+import Swal from 'sweetalert2';
+
+import logo from '../../images/logo.png';
 
 const DetailProduct = (props) => {
     const {id} = useParams();
     const {infoProducto} = useProduct();
     let getCarritototal = JSON.parse(localStorage.getItem('product'));
     const [totalLS] = useState(getCarritototal.length);
+
+    const handleInfo = () => {
+        Swal.fire({
+            title: 'Contáctanos',
+            html: `<strong>Dirección:</strong> <br> <span>Carrera 6 # 1- 51 esquina Calle Bavaria Buenaventura, Colombia</span> <br><br> <strong>Teléfono:</strong> <br> <span>+57 3142098439</span>`,
+            imageUrl: `${logo}`,
+            imageWidth: 300,
+            imageHeight: 100,
+            imageAlt: 'Custom image',
+        })
+    }
 
     return (
         <>
@@ -56,7 +70,7 @@ const DetailProduct = (props) => {
                 </div>
                 <div className={detailStyle.footer__btn}>
                     <a href="/home"><i className="fas fa-home"></i></a>
-                    <button><i className="fas fa-cog"></i></button>
+                    <button onClick={handleInfo}><i className="fas fa-info"></i></button>
                 </div>
             </footer>
         </>
