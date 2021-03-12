@@ -9,6 +9,7 @@ import CardProduct from '../../components/layouts/card-product/CardProduct';
 import Footer from '../../components/layouts/footer/Footer';
 
 const Home = () => {
+  // Validación de 
   const {infoProducto} = useProduct();
   if (!localStorage.getItem('product')) {
     localStorage.setItem('product','[]');

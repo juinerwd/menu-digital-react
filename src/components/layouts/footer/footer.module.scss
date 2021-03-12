@@ -59,4 +59,16 @@ footer {
             background-color: transparent;
         }
     }
+    .information {
+        width: 100%;
+        height: 200px;
+        z-index: 100;
+        position: absolute;
+        background-color: $zapote;
+
+        .logo {
+            width: 200px;
+            border-radius: 50px;
+        }
+    }
 }
