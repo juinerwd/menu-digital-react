@@ -17,7 +17,7 @@ const Start = () => {
             </div>
             <div className={startStyle.welcome}>
                 <h1>Bienvenido</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Como picatoon solo picatoon</p>
             </div>
             <div className={startStyle.redirect__menu}>
                 <Link className={startStyle.btn} to="/home">Ver menú <i className="fas fa-chevron-right"></i></Link>
